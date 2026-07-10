@@ -1,96 +1,149 @@
-# -----------------------------
-# BRUTE FORCE APPROACH
-# Time Complexity: O(N²)
-# Space Complexity: O(1)
-# -----------------------------
+class Solution:
+    # Function to check if any two numbers sum up to target (variant 1)
+    def two_sum_exists(self, arr, target):
+        n = len(arr)
+        # Outer loop picks one element at a time
+        for i in range(n):
+            # Inner loop searches for another element that complements arr[i]
+            for j in range(i + 1, n):
+                # If sum equals target, return "YES"
+                if arr[i] + arr[j] == target:
+                    return "YES"
+        # No pair found that sums to target
+        return "NO"
 
-def two_sum_brute(arr, target):
-    n = len(arr)
+    # Function to return indices of two numbers that sum to target (variant 2)
+    def two_sum_indices(self, arr, target):
+        n = len(arr)
+        # Outer loop picks one element at a time
+        for i in range(n):
+            # Inner loop searches for another element that complements arr[i]
+            for j in range(i + 1, n):
+                # If sum equals target, return the pair of indices
+                if arr[i] + arr[j] == target:
+                    return [i, j]
+        # No such pair found
+        return [-1, -1]
 
-    # Check every pair
-    for i in range(n):
-        for j in range(i + 1, n):
+if __name__ == "__main__":
+    sol = Solution()
 
-            # If pair sum equals target
-            if arr[i] + arr[j] == target:
+    arr = [2, 6, 5, 8, 11]
+    target = 14
+
+    # Variant 1
+    print(sol.two_sum_exists(arr, target))
+
+    # Variant 2
+    print(sol.two_sum_indices(arr, target))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------OPTIMAL SOLUTION----------------
+class Solution:
+    # Variant 1: Check if two numbers sum to target using two-pointer approach
+    def two_sum_exists(self, arr, target):
+        # Create list of tuples (value, original_index)
+        nums_with_index = [(num, idx) for idx, num in enumerate(arr)]
+        
+        # Sort list based on the values (to apply two-pointer technique)
+        nums_with_index.sort(key=lambda x: x[0])
+
+        # Initialize two pointers: left at start, right at end
+        left, right = 0, len(arr) - 1
+        
+        # Continue until pointers cross
+        while left < right:
+            # Calculate sum of values at pointers
+            current_sum = nums_with_index[left][0] + nums_with_index[right][0]
+            
+            if current_sum == target:
+                # Found a pair
                 return "YES"
+            elif current_sum < target:
+                # Sum too small, move left pointer to right to increase sum
+                left += 1
+            else:
+                # Sum too large, move right pointer to left to decrease sum
+                right -= 1
+        
+        # No pair found
+        return "NO"
 
-    return "NO"
+    # Variant 2: Return indices of two numbers that sum to target
+    def two_sum_indices(self, arr, target):
+        # Create list of tuples (value, original_index)
+        nums_with_index = [(num, idx) for idx, num in enumerate(arr)]
+        
+        # Sort the list by values
+        nums_with_index.sort(key=lambda x: x[0])
 
+        left, right = 0, len(arr) - 1
+        
+        while left < right:
+            current_sum = nums_with_index[left][0] + nums_with_index[right][0]
+            if current_sum == target:
+                # Return original indices of found elements
+                return [nums_with_index[left][1], nums_with_index[right][1]]
+            elif current_sum < target:
+                # Move left pointer right to increase sum
+                left += 1
+            else:
+                # Move right pointer left to decrease sum
+                right -= 1
+        
+        # No valid pair found
+        return [-1, -1]
 
-# Example
-arr = [2, 6, 5, 8, 11]
-target = 14
+if __name__ == "__main__":
+    sol = Solution()
+    arr = [2, 6, 5, 8, 11]
+    target = 14
 
-print(two_sum_brute(arr, target))
-
-
-# -----------------------------
-# BETTER APPROACH (Hash Map)
-# Time Complexity: O(N)
-# Space Complexity: O(N)
-# -----------------------------
-
-def two_sum_hashmap(arr, target):
-
-    visited = {}
-
-    for i in range(len(arr)):
-
-        current = arr[i]
-
-        # Number needed to make target
-        more_needed = target - current
-
-        # Check if required number already exists
-        if more_needed in visited:
-            return "YES"
-
-        # Store current element
-        visited[current] = i
-
-    return "NO"
-
-
-# Example
-arr = [2, 6, 5, 8, 11]
-target = 14
-
-print(two_sum_hashmap(arr, target))
-
-# -----------------------------
-# OPTIMAL APPROACH
-# Two Pointers
-# Time Complexity: O(N log N)
-# Space Complexity: O(1)
-# -----------------------------
-
-def two_sum_optimal(arr, target):
-
-    # Sort the array
-    arr.sort()
-
-    left = 0
-    right = len(arr) - 1
-
-    while left < right:
-
-        current_sum = arr[left] + arr[right]
-
-        if current_sum == target:
-            return "YES"
-
-        elif current_sum < target:
-            left += 1
-
-        else:
-            right -= 1
-
-    return "NO"
-
-
-# Example
-arr = [2, 6, 5, 8, 11]
-target = 14
-
-print(two_sum_optimal(arr, target))
+    print(sol.two_sum_exists(arr, target))  # Output: YES
+    print(sol.two_sum_indices(arr, target)) # Output: [1, 3]
