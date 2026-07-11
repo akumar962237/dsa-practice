@@ -26,7 +26,7 @@ def missing_number(arr):
 print(missing_number(arr))
 
 
-'''
+
 #-----------OPTIMAL APPROACH-----------------
 def missing_number(arr):
     n = len(arr) + 1  # Total numbers should be n+1
@@ -35,4 +35,3 @@ def missing_number(arr):
     return total_sum - arr_sum  # The missing number
 
 print(missing_number(arr))
-'''
