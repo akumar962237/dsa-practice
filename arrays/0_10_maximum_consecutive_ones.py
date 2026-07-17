@@ -1,5 +1,8 @@
-#-----------OPTIMAL SOLUTION----------------
-arr = [1, 1, 0, 1, 1, 1,0, 1, 1, 1, 1]
+#  -----------OPTIMAL SOLUTION----------------
+
+
+arr = [1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1]
+
 
 def max_consecutive_ones(arr):
     max = 0
@@ -12,5 +15,6 @@ def max_consecutive_ones(arr):
         else:
             count = 0
     return max
+
 
 print(max_consecutive_ones(arr))

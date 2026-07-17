@@ -1,5 +1,6 @@
 arr = [1,2,3,4,5]
 
+
 def left_rotate(arr, k):
     n = len(arr)
     k = k % n
