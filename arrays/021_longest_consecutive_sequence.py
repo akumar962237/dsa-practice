@@ -30,3 +30,37 @@ def longest_seq_brute(arr):
     return longest
 
 print(longest_seq_brute(arr))
+
+
+#--------------BETTER APPROACH------------
+def longestSuccessiveElements(nums):
+
+    if len(nums) == 0:
+        return 0
+
+    nums.sort()
+
+    n = len(nums)
+
+    lastSmaller = float("-inf")
+    cnt = 0
+    longest = 1
+
+    for i in range(n):
+
+        if nums[i] - 1 == lastSmaller:
+            cnt += 1
+            lastSmaller = nums[i]
+
+        elif lastSmaller != nums[i]:
+            cnt = 1
+            lastSmaller = nums[i]
+
+        longest = max(longest, cnt)
+
+    return longest
+
+
+nums = [100, 102, 100, 101, 101, 4, 3, 2, 3, 2, 1, 1, 1, 2]
+
+print(longestSuccessiveElements(nums))
