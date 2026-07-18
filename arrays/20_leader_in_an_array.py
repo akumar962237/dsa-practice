@@ -40,14 +40,6 @@ Approaches:
 arr = [10, 22, 12, 3, 0, 6]
 
 def find_leaders_brute(arr):
-    """
-    Finds all leaders using the Brute Force approach.
-
-    Logic:
-    ------
-    For every element, check all the elements on its right.
-    If no greater element exists, then it is a leader.
-    """
 
     n = len(arr)
     ans = []
@@ -79,17 +71,6 @@ print("Brute Force Output :", find_leaders_brute(arr))
 # =====================================================
 
 def find_leaders_optimal(arr):
-    """
-    Finds all leaders using the Optimal approach.
-
-    Logic:
-    ------
-    Traverse from right to left while keeping track of
-    the maximum element encountered so far.
-
-    If the current element is greater than the maximum,
-    it is a leader.
-    """
 
     ans = []
     maxi = float('-inf')      # Smallest possible value
@@ -111,3 +92,39 @@ def find_leaders_optimal(arr):
 
 
 print("Optimal Output     :", find_leaders_optimal(arr))
+
+def longestSuccessiveElements(nums):
+
+    if len(nums) == 0:
+        return 0
+
+    st = set()
+
+    # Insert all elements into the set
+    for i in range(len(nums)):
+        st.add(nums[i])
+
+    longest = 1
+
+    # Traverse the set
+    for it in st:
+
+        # Check if it is the starting element
+        if (it - 1) not in st:
+
+            cnt = 1
+            x = it
+
+            # Count the consecutive elements
+            while (x + 1) in st:
+                x += 1
+                cnt += 1
+
+            longest = max(longest, cnt)
+
+    return longest
+
+
+nums = [100, 102, 100, 101, 101, 4, 3, 2, 3, 2, 1, 1, 1, 2]
+
+print(longestSuccessiveElements(nums))

@@ -64,3 +64,39 @@ def longestSuccessiveElements(nums):
 nums = [100, 102, 100, 101, 101, 4, 3, 2, 3, 2, 1, 1, 1, 2]
 
 print(longestSuccessiveElements(nums))
+
+def longestSuccessiveElements(nums):
+
+    if len(nums) == 0:
+        return 0
+
+    st = set()
+
+    # Insert all elements into the set
+    for i in range(len(nums)):
+        st.add(nums[i])
+
+    longest = 1
+
+    # Traverse the set
+    for it in st:
+
+        # Check if it is the starting element
+        if (it - 1) not in st:
+
+            cnt = 1
+            x = it
+
+            # Count the consecutive elements
+            while (x + 1) in st:
+                x += 1
+                cnt += 1
+
+            longest = max(longest, cnt)
+
+    return longest
+
+
+nums = [100, 102, 100, 101, 101, 4, 3, 2, 3, 2, 1, 1, 1, 2]
+
+print(longestSuccessiveElements(nums))
