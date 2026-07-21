@@ -49,7 +49,7 @@ class Solution:
 
         # Step 2: Reverse each row
         for i in range(n):
-            # Reverse the current row to simulate clockwise rotation
+            # Reverse the current row to simulate clockwise rotation 
             matrix[i].reverse()
 
 # Driver code
