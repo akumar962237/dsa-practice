@@ -168,3 +168,5 @@ result = obj.generate(N)
 # Print the triangle
 for row in result:
     print(*row)
+
+    
