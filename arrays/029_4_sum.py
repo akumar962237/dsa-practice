@@ -12,7 +12,7 @@ class Solution:
 
             # Step 2: Second loop for second number
             for j in range(i + 1, n):
-                if j != i + 1 and arr[j] == arr[j - 1]:
+                if j > i + 1 and arr[j] == arr[j - 1]:
                     continue
 
                 # Step 3: Two pointers
@@ -39,7 +39,7 @@ class Solution:
 
 # Driver code
 arr = [1, 0, -1, 0, -2, 2]
-target = 1
+target = 0
 
 obj = Solution()
 print(obj.fourSum(arr, target))
