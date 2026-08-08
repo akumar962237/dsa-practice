@@ -1,35 +1,56 @@
-# find last index of key using binary search
-def solve(n: int, key: int, v: list[int]) -> int:
-    # initialize search bounds and result
-    start, end, res = 0, n - 1, -1
 
-    # binary search loop
-    while start <= end:
-        # compute mid safely
-        mid = start + (end - start) // 2
-        # when match found, store index and move right
-        if v[mid] == key:
-            res = mid
-            start = mid + 1
-        # when key is smaller, move left
-        elif key < v[mid]:
-            end = mid - 1
-        # otherwise move right
+def firstOccurrence(arr, n, k):
+    low = 0
+    high = n - 1
+    first = -1
+
+    while low <= high:
+        mid = (low + high) // 2
+        # maybe an answer
+        if arr[mid] == k:
+            first = mid
+            # look for smaller index on the left
+            high = mid - 1
+        elif arr[mid] < k:
+            low = mid + 1  # look on the right
         else:
-            start = mid + 1
-    # return last occurrence or -1
-    return res
+            high = mid - 1  # look on the left
 
-# program entry
-def main():
-    # define input size and key
-    n = 7
-    key = 13
-    # define sorted list
-    v = [3, 4, 13, 13, 13, 20, 40]
-    # print last occurrence index (or -1)
-    print(solve(n, key, v))
+    return first
 
-# run main
+
+def lastOccurrence(arr, n, k):
+    low = 0
+    high = n - 1
+    last = -1
+
+    while low <= high:
+        mid = (low + high) // 2
+        # maybe an answer
+        if arr[mid] == k:
+            last = mid
+            # look for larger index on the right
+            low = mid + 1
+        elif arr[mid] < k:
+            low = mid + 1  # look on the right
+        else:
+            high = mid - 1  # look on the left
+
+    return last
+
+
+def firstAndLastPosition(arr, n, k):
+    first = firstOccurrence(arr, n, k)
+    if first == -1:
+        return (-1, -1)
+    last = lastOccurrence(arr, n, k)
+    return (first, last)
+
+
+
 if __name__ == "__main__":
-    main()
+    arr = [2, 4, 6, 8, 8, 8, 11, 13]
+    n = 8
+    x = 8
+    first, last = firstAndLastPosition(arr, n, x)
+    print("The first and last positions are:", first, last)
