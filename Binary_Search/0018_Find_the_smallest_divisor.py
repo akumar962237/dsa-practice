@@ -1,3 +1,6 @@
+#-------------------------
+#Find the Smallest Divisor
+#-------------------------
 import math
 
 class SmallestDivisorFinder:
