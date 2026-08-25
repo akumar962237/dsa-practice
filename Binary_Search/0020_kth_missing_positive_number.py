@@ -1,3 +1,6 @@
+#------------------------------
+# Kth missing number
+#------------------------------
 class MissingKFinder:
     # Binary search to find the k-th missing number
     def missing_k(self, vec, k):
