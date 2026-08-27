@@ -1,3 +1,7 @@
+########################
+##Agressive cows #######
+########################
+
 class Solution:
     # Function to check if cows can be placed with distance d
     def canPlace(self, stalls, cows, d):
