@@ -1,6 +1,6 @@
-########################
-##Agressive cows #######
-########################
+###############################################
+##Agressive cows using optimal solution #######
+###############################################
 
 class Solution:
     # Function to check if cows can be placed with distance d
